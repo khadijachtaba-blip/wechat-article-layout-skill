@@ -1,10 +1,7 @@
 interface:
-  display_name: "\u516C\u4F17\u53F7\u667A\u80FD\u6392\u7248"
-  short_description: "\u5C06Word\u7A3F\u4EF6\u8F6C\u6362\u4E3A\u516C\u4F17\u53F7\u517C\
-    \u5BB9\u5BCC\u6587\u672C\u4E0E\u7EAF\u51C0HTML\u6392\u7248"
-  default_prompt: "\u4F7F\u7528 $format-wechat-articles \u6839\u636E\u7A3F\u4EF6\u4E3B\
-    \u9898\u81EA\u52A8\u8BBE\u8BA1\u516C\u4F17\u53F7\u6392\u7248\uFF0C\u5E76\u751F\
-    \u6210\u53EF\u590D\u5236\u5BCC\u6587\u672C\u548CHTML\u3002"
+  display_name: "公众号智能排版"
+  short_description: "识别标题、金句与要点，生成现代公众号富文本与HTML"
+  default_prompt: "使用 $format-wechat-articles 读取我的稿件，自动识别标题层级、金句、要点、数据和段落结构，根据文章类型推荐三套在首屏、章节和重点组件上真正不同的现代UI感排版方案；等我选择后，只生成所选方案的可复制富文本和纯净HTML。"
 policy:
   products:
   - chatgpt

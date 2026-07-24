@@ -1,165 +1,162 @@
-# 公众号排版设计系统
+# 公众号排版设计与构建系统
 
-## 目录
+## 1. 配色
 
-1. 配色选择
-2. 排版令牌
-3. 模块使用
-4. 微信兼容约束
-5. 构建计划格式
-6. 验收清单
+| theme | 气质 | 主色 | 辅助色 | 深色 |
+| --- | --- | --- | --- | --- |
+| `tech` | 科技蓝绿 | `#3266F5` | `#31BFA6` | `#142744` |
+| `government` | 理性深蓝 | `#2B5F8F` | `#5F87AA` | `#173A59` |
+| `education` | 教育蓝暖 | `#3479B8` | `#E6A03C` | `#183F5D` |
+| `party` | 庄重红金 | `#AA3028` | `#C4943E` | `#681F1A` |
+| `culture` | 文化米棕 | `#96613A` | `#B28A58` | `#4E3B31` |
+| `nature` | 自然绿橙 | `#35745A` | `#C07A42` | `#29473B` |
+| `business` | 商务蓝金 | `#294765` | `#A68143` | `#172A3D` |
+| `editorial` | 编辑黑白 | `#242424` | `#9A5B43` | `#171717` |
 
-## 1. 配色选择
+配色控制在两种主色加一种强调色以内。主题由文章类型、目的和读者决定，不根据单个关键词机械选择。用户确认后必须写入明确主题或自定义颜色。
 
-| 主题 | accent | accent2 | dark | pale | page_bg |
-| --- | --- | --- | --- | --- | --- |
-| tech | `#6A5CFF` | `#4F7CFF` | `#20294A` | `#F2F1FF` | `#EEF1F7` |
-| government | `#2457A6` | `#3A72C5` | `#17365F` | `#EEF5FC` | `#EDF2F7` |
-| education | `#2F6FD6` | `#24A19C` | `#164A74` | `#EFF8FA` | `#EEF5F7` |
-| party | `#B42318` | `#D6A13B` | `#6D1711` | `#FFF4EC` | `#F7F1ED` |
-| culture | `#A65E2E` | `#C89B5D` | `#523D31` | `#FBF5EC` | `#F6F1EA` |
-| nature | `#2E7D5B` | `#77A86A` | `#24483A` | `#F1F8F3` | `#EDF4EF` |
-| business | `#1E3A5F` | `#A6854A` | `#16263B` | `#F2F5F8` | `#EDF1F5` |
+## 2. 视觉基线
 
-自动判断参考词：
+- 文章最大宽度677px。
+- 正文16px，行高1.95–2，字间距0.03–0.04em。
+- 主标题30–36px，章节标题20–24px，辅助文字12–14px。
+- 正文使用深灰；主题色承担锚点，不承担长正文。
+- 深色、浅色、白底区域交替；全文通常2–5个视觉锚点。
+- 政务、新闻、商务使用直角或8–14px圆角；科技、活动、教育可使用16–22px；杂志和文化可使用0–16px。
+- 同一篇只使用一套主要圆角、边界和阴影语言。
+- 小标签、英文眉题、虚线、图标不要同时堆叠。
+- 不默认蓝紫渐变，也不默认浅色顶栏＋粗色条＋虚线＋小标签。
+- 允许在首屏、金句或核心数据使用1–2处克制渐变；先设置纯色背景，确保微信清洗后仍可读。
+- UI感来自索引、信息分区、状态条、数据面板和稳定对齐，不模拟按钮、输入框或其他不可交互控件。
 
-- tech：AI、人工智能、智能体、OPC、科技、数字化、平台、软件。
-- government：政府、关工委、调研、委员会、街道、政策、政务。
-- education：教育、学校、教师、学生、课程、青少年、研学。
-- party：党建、党委、廉洁、清风、红色、党史、纪检。
-- culture：文化、艺术、书画、传承、非遗、节庆。
-- nature：文旅、乡村、生态、山水、度假、景区。
-- business：战略合作、签约、融资、商务、产业、企业合作。
+## 3. 版式参数
 
-标题与发布目的权重高于正文中的零散关键词。用户指定主题或颜色时不得自动覆盖。
+支持的 `layout`：
 
-## 2. 排版令牌
+- `briefing`
+- `minimal-news`
+- `tech-brand`
+- `business-report`
+- `event-story`
+- `education-warm`
+- `editorial`
+- `culture-story`
 
-- 文章最大宽度：677px。
-- 正文字号：16px；行高：2；字间距：0.04em。
-- 主标题：26–30px；行高：1.4–1.5。
-- 章节标题：20–22px；行高：1.5–1.6。
-- 辅助文字：12–14px。
-- 段落下间距：18–22px。
-- 大章节上间距：38–44px。
-- 卡片圆角：7–9px。
-- 正文色：`#2F3542`。
-- 次要文字：`#7F8798`。
-- 字体栈：`-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei',Arial,sans-serif`。
+支持的 `scene`：
 
-## 3. 模块使用
+- `official-briefing`
+- `news-release`
+- `party-study`
+- `product-launch`
+- `event-recruitment`
+- `event-recap`
+- `strategic-cooperation`
+- `education-research`
+- `policy-explainer`
+- `people-story`
+- `lifestyle-event`
+- `culture-journey`
+- `general`
 
-### 标题区
+密度：
 
-包含短标签、主标题、可选副标题。长标题按语义断成2–3行，不改变原文。
+- `light`：1类重点模块，正文和图片为主。
+- `balanced`：2–3类重点模块，默认。
+- `rich`：3–5类模块，仅用于图片、数据或流程充足的文章。
 
-### 导语卡
+视觉变体：
 
-用于活动时间、人物和核心事件。使用浅色背景与顶部或左侧强调线。
+- `hero_variant`：`scene-default`、`brand-gradient`、`editorial-light`、`calendar-blocks`、`ui-dashboard`、`split-gradient`
+- `section_variant`：`scene-default`、`accent-line`、`editorial-rule`、`label-rule`、`ui-index`、`number-stack`、`gradient-underline`
+- `metrics_variant`：`scene-default`、`dark-feature`、`stacked-facts`、`light-grid`
+- `steps_variant`：`scene-default`、`rounded-cards`、`schedule-list`、`ticket-list`、`ui-rail`
+- `emphasis_variant`：`scene-default`、`gradient-statement`、`editorial-statement`、`ui-notice`
+- `points_variant`：`scene-default`、`ui-list`、`index-grid`、`plain-checklist`
 
-### 章节标题
+用户选择方案后必须显式写入这些参数。`scene-default` 代表使用该场景的成熟默认值，不代表回退到统一模板。
 
-使用编号或英文短标签，例如 `SECTION 01`。全文风格一致。
+## 4. 模块规则
 
-### 重点卡
+- `lead`：只使用原稿已有导语或可直接拆出的摘要。
+- `section`：标题通常控制在8–16个汉字；允许忠实提炼，不增加新事实。
+- `subheading`：章节内部小标题，通常6–18个汉字，视觉强度低于 `section`。
+- `keyline`：原稿金句或核心价值句，不得编造口号，一篇通常1–3个。
+- `callout`：核心摘要或重点判断，一篇通常不超过2个。
+- `keypoints`：2–6个同层级要点，使用 `title`＋可选 `text`。
+- `metrics`：精确数据或事实，可用深色锚点、堆叠事实条或浅色网格。
+- `timeline`：明确时间顺序。
+- `steps`：操作、赛程、实施路径或参与指南。
+- `features`：功能、能力和并列事项。
+- `quote`：只使用原稿明确引语，不虚构说话人。
+- `image`：等比例、居中，最大宽度100%；小图不强制放大。
+- `caption`：只使用原稿已有或用户确认的客观说明。
+- `closing`：只使用原稿支持的结语。
 
-用于“调研聚焦”“核心观点”“项目亮点”。一篇文章通常不超过3个。
-
-### 标签串
-
-用于课程闭环、功能列表或流程，例如“课程资源＋互动平台＋实践任务＋成果路演”。
-
-### 数据指标
-
-用于2100+用户、150+企业等精确数据。移动端最多两列；超过两项时自动换行。
-
-### 引语卡
-
-用于负责人表态或案例故事。若原文没有明确说话人，不添加归属。
-
-### 图片
-
-默认全宽、等比例、圆角8px。不要凭空添加说明文字；只有来源明确时才加图注。
-
-### 结尾与署名
-
-结尾收束模块保持克制。署名和日期位于全部正文之后，右对齐、字号13–14px。
-
-## 4. 微信兼容约束
-
-- 正文只使用行内 `style`。
-- 不使用外链 CSS、网络字体、CSS变量、伪元素、动画和背景图片。
-- 不依赖 CSS Grid。谨慎使用 flex；优先使用普通块级元素和 inline-block。
-- 图片内嵌为 data URI，富文本复制后仍应核对公众号后台是否完成图片上传。
-- 富文本复制按钮只能复制 `wechat-article`，不得把操作栏一起复制。
-- 纯净版不得包含脚本。
-- 不使用复杂 SVG 作为正文信息载体。
-
-## 5. 构建计划格式
-
-最小示例：
+## 5. 构建计划
 
 ```json
 {
-  "title": "AI连接“一老一小”！海淀区关工委莅临海创元共探社会教育新实践",
-  "label": "调研交流 · 社会教育新实践",
-  "subtitle": "以真实场景探索人工智能赋能社会教育新路径",
-  "theme": "auto",
-  "source_text": "用于自动判断主题的标题与正文",
+  "title": "文章标题",
+  "label": "原稿短标签或适合的栏目眉题",
+  "subtitle": "原稿已有或可直接拆出的事实行",
+  "theme": "nature",
+  "layout": "event-story",
+  "scene": "lifestyle-event",
+  "density": "balanced",
+  "compatibility": "stable",
+  "hero_variant": "brand-gradient",
+  "section_variant": "accent-line",
+  "metrics_variant": "dark-feature",
+  "steps_variant": "rounded-cards",
+  "emphasis_variant": "gradient-statement",
+  "points_variant": "ui-list",
+  "colors": {
+    "accent": "#46B890",
+    "accent2": "#F0A34E",
+    "dark": "#162B4A",
+    "pale": "#F0F7F3",
+    "page_bg": "#EDF2F0"
+  },
   "lead": [
-    "7月22日，海淀区关工委社会教育专顾委一行莅临海创元调研交流。"
+    "原稿导语。"
   ],
   "blocks": [
     {
-      "type": "image",
-      "docx_path": "/absolute/path/article.docx",
-      "member": "word/media/image1.jpeg",
-      "alt": "调研人员合影"
-    },
-    {
-      "type": "callout",
-      "label": "调研聚焦",
-      "text": "本次调研聚焦人工智能如何更好地服务青少年成长。"
-    },
-    {
       "type": "section",
-      "number": "01",
-      "title": "智教服务集群：AI助力全龄教育提质增效"
+      "label": "MUSIC IN THE PARK",
+      "title": "简洁章节标题"
     },
     {
       "type": "paragraph",
       "text": "正文段落。"
     },
     {
-      "type": "tags",
-      "items": ["课程资源", "互动平台", "实践任务", "成果路演"]
+      "type": "subheading",
+      "title": "章节内的小标题"
+    },
+    {
+      "type": "keyline",
+      "label": "核心观点",
+      "text": "来自原稿的金句。"
+    },
+    {
+      "type": "keypoints",
+      "label": "关键要点",
+      "items": [
+        {"title": "要点标题", "text": "对应原稿内容"}
+      ]
     },
     {
       "type": "metrics",
       "items": [
-        {"value": "2100+", "label": "OPC用户"},
-        {"value": "150+", "label": "发单企业"}
+        {"value": "15场", "label": "高品质户外音乐盛宴"}
       ]
     },
     {
-      "type": "features",
-      "items": ["AI需求助手", "智能报价卡", "智能匹配", "节点验收"]
-    },
-    {
-      "type": "quote",
-      "label": "AI温暖连接“一老一小”",
-      "text": "案例或引语内容。",
-      "attribution": ""
-    },
-    {
-      "type": "closing",
-      "title": "以人工智能连接“一老一小”",
-      "subtitle": "让技术更有温度，让社会教育更具活力"
-    },
-    {
-      "type": "signature",
-      "lines": ["署名单位", "工作室名称"],
-      "date": "2026年7月23日"
+      "type": "steps",
+      "items": [
+        {"title": "演出地点", "text": "原稿地点"}
+      ]
     }
   ],
   "output": {
@@ -169,21 +166,19 @@
 }
 ```
 
-支持的 `theme`：`auto`、`tech`、`government`、`education`、`party`、`culture`、`nature`、`business`。
+## 6. 微信兼容
 
-图片模块支持以下任一来源：
+- 正文只使用行内 `style`。
+- 不使用外链CSS、网络字体、CSS变量、伪元素、动画、背景图片或CSS Grid。
+- 渐变只用于少数首屏、金句或结尾，并同时设置纯色回退。
+- 富文本版按钮只复制 `wechat-article`。
+- 纯净版不得包含脚本。
+- 图片宽度不超过100%，保持 `height:auto`。
 
-- `path`：本地图片绝对路径。
-- `docx_path` + `member`：DOCX绝对路径及压缩包内成员。
-- `data_uri`：已生成的图片 data URI。
+## 7. 一次性验收
 
-## 6. 验收清单
-
-- 对照源稿逐段检查，禁止只看前几段。
-- 对照源稿核对所有精确数字和网址。
-- 核对图片数量、顺序与字节哈希。
-- 核对标题标点、引号、日期和机构全称。
-- 检查富文本版复制按钮只选择文章主体。
-- 检查纯净版无脚本、无外链样式。
-- 检查所有图片 `width:100%;height:auto`。
-- 检查未因套用旧模板而带入旧稿内容。
+- 标题、正文、数据、网址和图片完整，无虚构信息。
+- 标题、金句、要点和段落层级识别准确；首屏有明确第一视觉，深浅节奏成立。
+- 不存在三处以上无意义虚线、小标签堆叠、混杂圆角或每段卡片化。
+- 最终版式与所选场景和变体一致，不是只换颜色。
+- 两份HTML各只有一个 `wechat-article`；富文本版有复制按钮，纯净版无脚本；无外链样式和明显横向溢出。
